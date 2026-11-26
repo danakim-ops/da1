@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f9ff" />
+    <meta name="description" content="우리 가족의 하루에 맞는 돌봄·교육 일정을 한눈에 확인하세요." />
+    <title>오늘의 돌봄·교육 일정</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="오늘의 돌봄·교육 홈">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 5.5 34 17v16.5H6V17L20 5.5Z"/><path d="M15 33.5V22h10v11.5M12 17h.1M28 17h.1"/></svg></span>
+          <span><strong>오늘의 돌봄·교육</strong><small>TODAY SCHEDULE</small></span>
+        </a>
+        <button class="icon-button" id="help-button" aria-label="이용 안내"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.4 2.4 0 1 1 4.2 1.6c-.8.8-1.9 1.2-1.9 2.4M12 16.5h.01"/></svg></button>
+      </header>
+
+      <main>
+        <section class="welcome">
+          <div>
+            <p class="eyebrow"><span class="live-dot"></span> 우리 가족의 하루를 가볍게</p>
+            <h1>오늘의 돌봄·교육 일정</h1>
+            <p class="welcome-copy">필요한 시간에 이용할 수 있는 프로그램을<br class="desktop-break" /> 한눈에 확인해 보세요.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true"><div class="sun"></div><div class="art-house">⌂</div><span class="art-star star-one">✦</span><span class="art-star star-two">✦</span><span class="art-cloud"></span></div>
+        </section>
+
+        <section class="schedule-panel" aria-label="일정">
+          <div class="date-heading"><div><p class="eyebrow">이번 주 일정</p><h2 id="selected-date">11월 26일 목요일</h2></div><button id="today-button" class="today-link">오늘로 이동 <span>↗</span></button></div>
+          <div class="week-strip" id="week-strip" role="tablist" aria-label="요일 선택"></div>
+
+          <div class="filter-area">
+            <div class="filter-heading"><div><h2>어떤 시간이 필요하세요?</h2><p>지역과 시간대를 선택해 찾아보세요.</p></div><button id="open-filter" class="filter-open" aria-label="지역과 시간대 조건 선택"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10m-7 5h4"/><circle cx="9" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg></button></div>
+            <div class="filter-chips"><button id="region-chip" class="filter-chip"><span class="pin-icon">⌖</span><span>경기 용인시</span><span class="chevron">⌄</span></button><button id="time-chip" class="filter-chip"><span class="clock-icon">◷</span><span>전체 시간대</span><span class="chevron">⌄</span></button></div>
+            <div class="preset-row" aria-label="빠른 시간대 선택"><button class="preset" data-preset="after-school">하교 후 <span>15:00–18:00</span></button><button class="preset" data-preset="evening">저녁 돌봄 <span>18:00–20:00</span></button></div>
+          </div>
+
+          <div class="list-heading"><div><h2>시작 시간순 일정</h2><span id="result-count" class="result-count"></span></div><button id="sort-button" class="sort-button">시간순 <span>⌄</span></button></div>
+          <div id="schedule-list" class="schedule-list"></div>
+          <div class="data-note"><span>ⓘ</span> 화면 예시 데이터 · 이용 전 기관에 일정과 신청 가능 여부를 확인해 주세요.</div>
+        </section>
+
+        <section class="trust-row"><div class="trust-icon">♡</div><div><strong>가입 없이 바로 확인</strong><p>꼭 필요한 정보만 모아 보여드려요.</p></div><span class="trust-spark">✳</span></section>
+      </main>
+      <footer>가족의 하루에 여유를 더하는 일정 안내 서비스</footer>
+    </div>
+
+    <div class="scrim" id="scrim"></div>
+    <section class="sheet filter-sheet" id="filter-sheet" role="dialog" aria-modal="true" aria-labelledby="filter-title" aria-hidden="true">
+      <div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">맞춤 일정 찾기</p><h2 id="filter-title">필요한 조건을 선택해 주세요</h2></div><button class="close-button" data-close aria-label="닫기">×</button></div>
+      <div class="guide-banner"><span class="guide-icon">✦</span><p><strong>하교 후 돌봄이 필요하신가요?</strong><br />우리 가족에게 맞는 시간대를 찾아볼게요.</p></div>
+      <div class="sheet-section"><div class="section-label"><h3>지역</h3><span>용인시 시범 운영</span></div><div class="region-grid" id="region-grid"></div><p class="inline-hint" id="region-hint" aria-live="polite"></p></div>
+      <div class="sheet-section"><div class="section-label"><h3>필요한 시간대</h3><span>30분 단위</span></div><div class="select-row"><label>시작 시간<select id="start-time"></select></label><span class="time-separator">~</span><label>종료 시간<select id="end-time"></select></label></div><div class="sheet-presets"><button class="preset" data-preset="after-school">하교 후 <span>15:00–18:00</span></button><button class="preset" data-preset="evening">저녁 돌봄 <span>18:00–20:00</span></button></div><p class="validation" id="time-error" aria-live="polite"></p></div>
+      <div class="sheet-actions"><button id="reset-filter" class="reset-button">초기화</button><button id="apply-filter" class="primary-button">일정 찾아보기</button></div>
+    </section>
+
+    <section class="sheet detail-sheet" id="detail-sheet" role="dialog" aria-modal="true" aria-labelledby="detail-title" aria-hidden="true"><div class="sheet-handle"></div><div id="detail-content"></div></section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
